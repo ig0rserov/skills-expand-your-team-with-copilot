@@ -891,8 +891,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Handle different share types
     if (button.classList.contains("share-facebook")) {
-      // Facebook share
-      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`;
+      // Facebook share - Facebook will extract content from Open Graph meta tags
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
       window.open(facebookUrl, "_blank", "width=600,height=400");
     } else if (button.classList.contains("share-twitter")) {
       // Twitter share
@@ -920,6 +920,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   // Fallback copy to clipboard for older browsers
+  // Note: document.execCommand('copy') is deprecated but used here as a fallback
+  // for browsers that don't support the modern Clipboard API
   function fallbackCopyToClipboard(text) {
     const textArea = document.createElement("textarea");
     textArea.value = text;
