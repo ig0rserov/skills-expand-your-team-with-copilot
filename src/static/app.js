@@ -2,14 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Dark mode functionality
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const darkModeIcon = document.getElementById("dark-mode-icon");
+  
+  // Constants for localStorage values
+  const DARK_MODE_ENABLED = "enabled";
+  const DARK_MODE_DISABLED = "disabled";
 
   // Check for saved dark mode preference
   function initializeDarkMode() {
     const savedDarkMode = localStorage.getItem("darkMode");
-    if (savedDarkMode === "enabled") {
+    if (savedDarkMode === DARK_MODE_ENABLED) {
       document.body.classList.add("dark-mode");
       darkModeIcon.textContent = "☀️";
     } else {
+      // Default to light mode for first-time users or when disabled
       darkModeIcon.textContent = "🌙";
     }
   }
@@ -21,10 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (isDarkMode) {
       darkModeIcon.textContent = "☀️";
-      localStorage.setItem("darkMode", "enabled");
+      localStorage.setItem("darkMode", DARK_MODE_ENABLED);
     } else {
       darkModeIcon.textContent = "🌙";
-      localStorage.setItem("darkMode", "disabled");
+      localStorage.setItem("darkMode", DARK_MODE_DISABLED);
     }
   }
 
